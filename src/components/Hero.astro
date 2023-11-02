@@ -1,31 +1,34 @@
 ---
 import { Icon } from 'astro-icon'
 
-const { src = '/astronaut-hero-img.webp' } = Astro.props
+const { src = '/Hideout.png' } = Astro.props
 ---
 
 <section class="hero my-24">
   <div class="container">
     <div class="grid grid-cols-1 items-center gap-24 lg:grid-cols-2">
       <div class="flex flex-col items-center gap-8 md:items-start">
-        <h1 class="text-center text-6xl md:text-left lg:text-8xl">
-          <slot><span class="text-gradient">Accessible</span> Starter for Astro</slot>
+        <h1 class="text-center text-5xl md:text-left lg:text-6xl" style="line-height: 1.1">
+					<span>Reminders that <span class="pause">pause</span>
+					when you're </span> <span id="mapping" >
+						<span id="size-holder">mapping</span>
+						<span class="option text-gradient active">mapping</span>
+						<span class="option text-gradient">bossing</span>
+						<span class="option text-gradient">leveling</span>
+						<span class="option text-gradient">delving</span>
+						<span class="option text-gradient">farming</span>
+						<span class="option text-gradient">heisting</span>
+					</span>
+					<span> in Path of Exile</span>
         </h1>
         <div class="flex flex-col gap-3 min-[500px]:flex-row">
-          <a class="button has-icon" href="https://github.com/markteekman/accessible-astro-starter">
-            <Icon pack="ion" name="star-outline" />
-            Star on GitHub
-          </a>
-          <a
-            class="button has-icon color-secondary"
-            href="https://github.com/markteekman/accessible-astro-starter/blob/main/README.md"
-          >
-            <Icon pack="ion" name="bookmark-outline" />
-            Read the Docs
+          <a class="button has-icon" href="https://github.com/HideoutReminders/HideoutRemindersTauri/releases/latest">
+            <Icon pack="mdi" name="download-box-outline" />
+            Download Hideout Reminders
           </a>
         </div>
       </div>
-      <img class="hidden lg:block" src={src} alt="" decoding="async" />
+      <img class="lg:block" src={src} alt="Hideout Reminders Screenshot" decoding="async" />
     </div>
   </div>
 </section>
@@ -39,9 +42,62 @@ const { src = '/astronaut-hero-img.webp' } = Astro.props
   }
 
   :global(.darkmode .text-gradient) {
-    background: linear-gradient(315deg, var(--primary-200) 25%, var(--secondary-400));
+    background: linear-gradient(315deg, var(--secondary-500) 25%, var(--secondary-100));
     background-clip: border-box;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
+	#mapping {
+		position: relative;
+	}
+
+  #mapping span.option {
+		position: absolute;
+		left: 0px;
+		top: 0px;
+		opacity: 0;
+		height: 80px;
+		transition: all 0.25s ease-in;
+		transform: translateY(30px);
+		pointer-events: none;
+
+		&.active {
+			opacity: 1;
+			transform: translateY(0.4rem);
+		}
+
+		&.inactive {
+			transform: translateY(-30px);
+		}
+  }
+
+  #mapping #size-holder {
+    position: relative;
+    opacity: 0;
+    top: auto;
+    left: auto;
+  }
 </style>
+
+<script>
+const options = document.querySelectorAll('span.option')
+let activeOptionIdx = 0;
+
+function cycleOption () {
+	activeOptionIdx++
+	if (activeOptionIdx >= options.length) {
+		activeOptionIdx = 0
+	}
+	const active = document.querySelector('span.option.active')
+	active.classList.remove('active')
+	active.classList.add('inactive')
+	options[activeOptionIdx].classList.add('active')
+	setTimeout(() => {
+		document.querySelector('span.option.inactive').classList.remove('inactive')
+	}, 250)
+}
+
+setInterval(cycleOption, 3000);
+
+</script>

@@ -8,7 +8,7 @@
   font-weight: bold;
   text-decoration: none;
   text-align: center;
-  color: var(--neutral-900);
+  color: var(--neutral-100);
   background-color: var(--primary-100);
   border: 3px solid var(--primary-100);
   border-radius: 3px;
@@ -22,12 +22,13 @@
   }
 
   &:visited {
-    color: var(--neutral-900);
+    color: var(--neutral-100);
   }
 
   &.color-secondary {
     background-color: var(--secondary-100);
     border-color: (var(--secondary-100));
+    color: var(--neutral-900);
 
     &:hover,
     &:focus {
