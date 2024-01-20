@@ -21,10 +21,13 @@ const { src = '/Hideout.png' } = Astro.props
 					</span>
 					<span> in Path of Exile</span>
         </h1>
-        <div class="flex flex-col gap-3 min-[500px]:flex-row">
+        <div class="flex flex-col gap-3 min-[500px]:flex-row items-center">
           <a class="button has-icon" href="https://github.com/HideoutReminders/HideoutRemindersTauri/releases/latest">
             <Icon pack="mdi" name="download-box-outline" />
             Download Hideout Reminders
+          </a>
+          <a href="https://github.com/HideoutReminders/HideoutRemindersTauri" class="view-source no-underline text-slate-700">
+            View Source
           </a>
         </div>
       </div>
@@ -34,6 +37,10 @@ const { src = '/Hideout.png' } = Astro.props
 </section>
 
 <style lang="scss">
+	a.view-source {
+		text-decoration: none !important;
+	}
+
   .text-gradient {
     background: linear-gradient(315deg, var(--primary-200) 25%, var(--secondary-500));
     background-clip: border-box;
